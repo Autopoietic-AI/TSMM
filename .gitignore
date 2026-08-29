@@ -1,0 +1,27 @@
+# Local data (obtain separately; do not commit videos or annotations)
+data/train_fixed/
+data/test_fixed/
+data/frame_cache_clips/
+data/*.json
+
+# Weights and training outputs
+checkpoints/*
+!checkpoints/.gitkeep
+results/
+*.pth
+*.log
+
+# Private training hyperparameters
+configs/train.yaml
+
+# Web uploads
+web/uploads/
+
+# Python / OS
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.venv/
+venv/
+.env

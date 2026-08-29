@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>检测结果 - TSMM</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <h1>检测结果</h1>
+
+    <div class="result-card {{ 'fake' if result.is_fake else 'real' }}">
+      <div class="verdict">{{ result.label }}</div>
+      <div class="confidence">置信度：{{ result.confidence }}%</div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric-row">
+        <span>伪造概率</span>
+        <div class="bar-wrap"><div class="bar fake-bar" style="width: {{ result.fake_prob }}%"></div></div>
+        <span>{{ result.fake_prob }}%</span>
+      </div>
+      <div class="metric-row">
+        <span>真实概率</span>
+        <div class="bar-wrap"><div class="bar real-bar" style="width: {{ result.real_prob }}%"></div></div>
+        <span>{{ result.real_prob }}%</span>
+      </div>
+    </div>
+
+    <dl class="details">
+      <dt>文件名</dt><dd>{{ filename }}</dd>
+      <dt>采样帧数</dt><dd>{{ result.num_segments }}</dd>
+      <dt>推理耗时</dt><dd>{{ result.inference_time_sec }} 秒</dd>
+    </dl>
+
+    <a class="back-link" href="{{ url_for('index') }}">← 重新上传</a>
+  </main>
+</body>
+</html>

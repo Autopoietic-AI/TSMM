@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TSMM Deepfake 检测</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="container">
+    <h1>TSMM Deepfake 视频检测</h1>
+    <p class="subtitle">上传 MP4 视频，使用 ResNet50+BBox 满配 TSMM 模型进行真伪鉴别</p>
+
+    {% if error %}
+    <div class="alert error">{{ error }}</div>
+    {% endif %}
+
+    <form class="upload-form" action="{{ url_for('detect') }}" method="post" enctype="multipart/form-data">
+      <label class="file-label">
+        <input type="file" name="video" accept=".mp4,video/mp4" required>
+        <span>选择 MP4 视频文件</span>
+      </label>
+      <button type="submit">开始检测</button>
+    </form>
+
+    <section class="info">
+      <h2>说明</h2>
+      <ul>
+        <li>支持格式：MP4，最大 {{ max_mb }}MB</li>
+        <li>模型：ResNet50 + CBAM + TCN + MHA + BBox</li>
+        <li>输出：视频级真假判断与置信度</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

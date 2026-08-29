@@ -1,0 +1,17 @@
+# Placeholder only. Copy to configs/train.yaml and fill in your own values.
+# Do not commit train.yaml.
+#
+# These numbers are NOT the paper training recipe.
+# Using this file as-is will not reproduce paper metrics.
+
+batch_size: 8
+num_epochs: 10
+learning_rate: 1.0e-3
+weight_decay: 1.0e-2
+label_smooth: 0.0
+early_stop_patience: 5
+mixup_alpha: 0.0
+use_amp: false
+ema_decay: 0.99
+grad_clip_norm: 1.0
+eta_min: 1.0e-6
